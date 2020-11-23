@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\CateEnum;
 use App\Models\Cate_product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,9 +11,13 @@ use Image;
 use Illuminate\Support\Str;
 class CateProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    	$cate_product = Cate_product::all();
+        if (isset($request->search)) {
+            $cate_product = Cate_product::where('name','like', '%'.$request->search.'%')->paginate(10);
+        } else {
+            $cate_product = Cate_product::paginate(10);
+        }
     	return view('admin.cate_product.index', compact('cate_product'));
     }
 
@@ -99,5 +104,34 @@ class CateProductController extends Controller
         return response()->json([
             'status' => true,
         ]);
+    }
+    public function status(Request $request) {
+        if (empty($request->select_box)) {
+            return back()->with('error','Please choose category');
+        } else {
+            $arrValue = explode(",", $request->select_box);
+            $type = $request->select_type;
+            switch ($type) {
+                case CateEnum::Active :
+                    $check_value = Cate_product::whereIn('id',$arrValue)->get();
+                    if (count($check_value) > 0) {
+                        Cate_product::whereIn('id',$arrValue)->update(['status' => CateEnum::Active]);
+                    }
+                break;
+                case CateEnum::InActive :
+                    $check_value = Cate_product::whereIn('id',$arrValue)->get();
+                    if (count($check_value) > 0) {
+                        Cate_product::whereIn('id',$arrValue)->update(['status' => CateEnum::InActive ]);
+                    }
+                break;
+                case CateEnum::Delete :
+                    $check_value = Cate_product::whereIn('id',$arrValue)->get();
+                    if (count($check_value) > 0) {
+                        Cate_product::whereIn('id',$arrValue)->delete();
+                    }
+                break;
+            }
+            return back()->with('success','Processed Successfully');
+        }
     }
 }

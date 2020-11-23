@@ -21,6 +21,8 @@
         <link href="{{ asset('css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
         <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <!-- Sweet Alert-->
+        <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{ asset('css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
@@ -62,6 +64,9 @@
         <script src="{{ asset('js/dropzone.min.js') }}"></script>
         <!-- init js -->
         <script src="{{ asset('js/ecommerce-select2.init.js') }}"></script>
+        <!-- Sweet alert init js-->
+        <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+        <script src="{{ asset('js/sweet-alerts.init.js') }}"></script>  
         @yield('script')
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
