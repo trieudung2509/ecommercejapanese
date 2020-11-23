@@ -1,10 +1,6 @@
 @extends('admin.partials.master')
 
 @section('title', 'List Category Product')
-@section('stylecss')
-    <!-- Sweet Alert-->
-    <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
 @section('content')
 <div class="page-content">
     <div class="container-fluid">
@@ -34,15 +30,17 @@
                         <div class="row mb-2">
                             <div class="col-sm-4">
                                 <div class="search-box mr-2 mb-2 d-inline-block">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Search...">
-                                        <i class="bx bx-search-alt search-icon"></i>
-                                    </div>
+                                    <form action="" method="GET" id="form-search" >
+                                        <div class="position-relative">
+                                        <input type="text" name="search" value="{{ Request::get('search') ?? '' }}" class="form-control" placeholder="Search...">
+                                            <i class="bx bx-search-alt search-icon"></i>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="col-sm-8">
                                 <div class="text-sm-right">
-                                    <a href="{{ route('admin.cate_product.create') }}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> Add New Order</a>
+                                    <a href="{{ route('admin.cate_product.create') }}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> Add Category</a>
                                 </div>
                             </div><!-- end col-->
                         </div>
@@ -52,10 +50,9 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th style="width: 20px;">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                <label class="custom-control-label" for="customCheck1">&nbsp;</label>
-                                            </div>
+                                            <div class="form-check custom-control">
+                                                <input type="checkbox" id="customCheck1">
+                                              </div>
                                         </th>
                                         <th>STT</th>
                                         <th>Category</th>
@@ -69,9 +66,8 @@
                                         @foreach ($cate_product as $key => $cate)
                                             <tr>
                                                 <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                        <label class="custom-control-label" for="customCheck2">&nbsp;</label>
+                                                    <div class="form-check custom-control">
+                                                    <input type="checkbox" name="check_cate" value="{{ $cate->id }}">
                                                     </div>
                                                 </td>
                                                 <td> {{ ++$key }}</td>
@@ -100,44 +96,35 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
-                                <form action="">
+                            <form action="{{ route('admin.cate_product.status') }}" method="POST">
+                                    @csrf
+                                    <input name="select_box" type="hidden" />
                                     <div class="row">
                                             <div class="col-sm-9">
                                                 <div class="form-group row mb-0">
-                                                    <select class="custom-select">
-                                                        <option selected="">Select Action</option>
+                                                    <select class="custom-select" name="select_type">
+                                                        <option value="">Select Action</option>
                                                         <option value="1">Active</option>
-                                                        <option value="2">InActive</option>
-                                                        <option value="3">Delete</option>
+                                                        <option value="0">InActive</option>
+                                                        <option value="2">Delete</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
-                                                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                                                <button type="submit" class="btn btn-primary mb-2">Process</button>
                                             </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-sm-9">
-                                <ul class="pagination pagination-rounded justify-content-end mb-2">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="javascript: void(0);" aria-label="Previous">
-                                            <i class="mdi mdi-chevron-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="javascript: void(0);">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="javascript: void(0);" aria-label="Next">
-                                            <i class="mdi mdi-chevron-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                            @if (isset($cate_product) && count($cate_product) > 0) 
+                                <div class="col-sm-9">
+                                    <div class="float-right">
+                                        @if (isset($cate_product) && count($cate_product) > 0) 
+                                            {{ $cate_product->links() }}
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
                     </div>
                 </div>
             </div>
@@ -147,9 +134,6 @@
 </div>
 @endsection
 @section('script')
-<!-- Sweet alert init js-->
-<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-<script src="{{ asset('js/sweet-alerts.init.js') }}"></script>
 <script>
     $(document).on('click','#delete-cate', function(){
         $id = $(this).data('attr');

@@ -1,3 +1,6 @@
 .required-star {
     color : #ff0000;
 }
+.search-box .search-icon {
+    cursor: pointer;
+}

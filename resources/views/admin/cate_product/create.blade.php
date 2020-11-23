@@ -42,14 +42,17 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="productname">Category Name <span class="required-star">*</span></label>
-                                        <input id="productname" name="name" type="text" class="form-control" required>
+                                        <input id="productname" name="name" type="text" class="form-control" value="{{ old('name') }}" required >
                                         @if($errors->has('name'))
                                             <p class="required-star">{{ $errors->first('name') }}</p>
                                         @endif
                                     </div>
                                      <div class="form-group">
                                         <label for="productname">Position</label>
-                                        <input name="position" type="text" class="form-control">
+                                        <input name="position" type="text" class="form-control" value="{{ old('position') }}">
+                                        @if($errors->has('position'))
+                                            <p class="required-star">{{ $errors->first('position') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-switch mb-3" dir="ltr">
@@ -68,7 +71,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="productdesc"> Description</label>
-                                        <textarea name="description" class="form-control" id="productdesc" rows="5"></textarea>
+                                        <textarea name="description" class="form-control" id="productdesc" rows="5">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +85,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="custom-file">
-                                            <input type="file" name="image" class="custom-file-input" id="customFile">
+                                        <input type="file" name="image" value="{{ old('image') }}" class="custom-file-input" id="customFile">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
@@ -99,18 +102,18 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="metatitle">Meta title</label>
-                                            <input id="metatitle" name="title_seo" type="text" class="form-control">
+                                            <input id="metatitle" name="title_seo" value="{{ old('title_seo') }}" type="text" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="metakeywords">Meta Keyword</label>
-                                            <input id="meta_keyword" name="meta_key" type="text" class="form-control">
+                                            <input id="meta_keyword" name="meta_key" value="{{ old('meta_key') }}" type="text" class="form-control">
                                         </div>
                                     </div>
     
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="metadescription">Meta Description</label>
-                                            <textarea class="form-control" name="meta_des" id="meta_description" rows="5"></textarea>
+                                        <textarea class="form-control" name="meta_des" id="meta_description" rows="5">{{ old('meta_des') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
