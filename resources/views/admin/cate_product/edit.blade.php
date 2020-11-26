@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-switch mb-3" dir="ltr">
-                                            <input type="checkbox" class="custom-control-input" name="status" id="customSwitch1" checked="">
+                                            <input type="checkbox" class="custom-control-input" name="status" id="customSwitch1" {{ $cate_product->status == 1 ? 'checked' : '' }}>
                                             <label class="custom-control-label" for="customSwitch1">Status</label>
                                         </div>
                                     </div>

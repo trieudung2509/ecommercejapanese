@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Cate_productRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class Cate_productRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:cate_products,name',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'position' => 'integer|unique:cate_products,position',
+            'name' => 'required',
+            'email' => 'required|unique:users,email,'.$this->id,
+            'password' => 'required|min:8',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
