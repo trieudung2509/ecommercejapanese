@@ -62,23 +62,17 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                     <li><a href="{{ route('admin.cate_product.index') }}" key="t-products">Category</a></li>
-                    <li><a href="{{ route('admin.product.index') }}" key="t-shops">Product</a></li>
+                    <li><a href="" key="t-shops">Product</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-bitcoin"></i>
-                        <span key="t-crypto">Crypto</span>
+                        <span key="t-crypto">Manager User</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="crypto-wallet.html" key="t-wallet">Wallet</a></li>
-                        <li><a href="crypto-buy-sell.html" key="t-buy">Buy/Sell</a></li>
-                        <li><a href="crypto-exchange.html" key="t-exchange">Exchange</a></li>
-                        <li><a href="crypto-lending.html" key="t-lending">Lending</a></li>
-                        <li><a href="crypto-orders.html" key="t-orders">Orders</a></li>
-                        <li><a href="crypto-kyc-application.html" key="t-kyc">KYC Application</a></li>
-                        <li><a href="crypto-ico-landing.html" key="t-ico">ICO Landing</a></li>
+                    <li><a href="{{ route('admin.users.list') }}">List</a></li>
                     </ul>
                 </li>
 

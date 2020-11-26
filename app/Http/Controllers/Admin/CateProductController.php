@@ -6,7 +6,7 @@ use App\Enum\CateEnum;
 use App\Models\Cate_product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Cate_productRequest;
+use App\Http\Requests\CateProductRequest;
 use Image;
 use Illuminate\Support\Str;
 class CateProductController extends Controller
@@ -26,7 +26,7 @@ class CateProductController extends Controller
         $category = Cate_product::select('id','name','parent_id')->get()->toArray();
     	return view('admin.cate_product.create', compact('category'));
     }
-    public function postCreate(Cate_productRequest $request) {
+    public function postCreate(CateProductRequest $request) {
         $cate_product                 = new Cate_product;
         $cate_product->name           = $request['name'];
         $cate_product->parent_id      = isset($request->parent_id) ? $request->parent_id : 0;
