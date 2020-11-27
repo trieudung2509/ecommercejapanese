@@ -71,6 +71,14 @@
                                     <div class="form-group">
                                         <label for="productname">Password News</label>
                                         <input name="password_news" type="password" minlength="8" class="form-control">
+                                        <p class="required-star">Please Input password news if you want to change password</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"> Role </label>
+                                        <select class="form-control select2" name="role">
+                                            <option {{ $permission->id == \App\Enum\RoleEnum::ADMIN['id'] ? 'selected' : '' }} value="{{ \App\Enum\RoleEnum::ADMIN['id'] }}">{{ \App\Enum\RoleEnum::ADMIN['name'] }}</option>
+                                            <option {{ $permission->id == \App\Enum\RoleEnum::USER['id'] ? 'selected' : '' }} value="{{ \App\Enum\RoleEnum::USER['id'] }}">{{ \App\Enum\RoleEnum::USER['name'] }}</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="productdesc"> Description</label>
