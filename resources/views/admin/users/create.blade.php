@@ -63,10 +63,17 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="productname">Password <span class="required-star">*</span></label>
-                                        <input name="password" type="text" required class="form-control" value="{{ old('password') }}">
+                                        <input name="password" type="password" required class="form-control" value="{{ old('password') }}">
                                         @if($errors->has('password'))
                                             <p class="required-star">{{ $errors->first('password') }}</p>
                                         @endif
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label"> Role </label>
+                                        <select class="form-control select2" name="role">
+                                            <option value="{{ \App\Enum\RoleEnum::ADMIN['id'] }}">{{ \App\Enum\RoleEnum::ADMIN['name'] }}</option>
+                                            <option value="{{ \App\Enum\RoleEnum::USER['id'] }}">{{ \App\Enum\RoleEnum::USER['name'] }}</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="productdesc"> Description</label>

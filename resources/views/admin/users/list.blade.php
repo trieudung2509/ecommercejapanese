@@ -56,6 +56,7 @@
                                         <th>STT</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Permission</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -72,6 +73,15 @@
                                                 <td> {{ ++$key }}</td>
                                                 <td>{{ $user->name  }}</td>
                                                 <td> {{ $user->email }}</td>
+                                                <td>
+                                                    @if ($user->role_id == \App\Enum\RoleEnum::ADMIN['id'])
+                                                        <span class="badge badge-pill badge-soft-primary font-size-12">Admin</span>
+                                                    @elseif($user->role_id == \App\Enum\RoleEnum::USER['id'])
+                                                        <span class="badge badge-pill badge-soft-success font-size-12">User</span>
+                                                    @else
+                                                        <span class="badge badge-pill badge-soft-danger font-size-12">Customer</span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @if ($user->status == 1)
                                                         <span class="badge badge-pill badge-soft-success font-size-12">Active</span>

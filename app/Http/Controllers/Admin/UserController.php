@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enum\CateEnum;
+use App\Enum\RoleEnum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\Role;
 use App\Models\User;
+use App\Models\UserRole;
 use Image,Hash;
 class UserController extends Controller
 {
@@ -35,8 +38,13 @@ class UserController extends Controller
             Image::make($image)->save(public_path('upload/users/'.$filename));
             $user->avatar = 'upload/users/'.$filename;
         }
+        $role = Role::where('id',$request['role'])->first();
+        if ($role) {
+            $user->role_id = $role->id;
+        } else {
+            $user->role_id = RoleEnum::USER['id'];
+        }
         $user->save();
-
     	return redirect()->route('admin.users.list')->with('success','Add User Success !');
     }
     public function update($id)
@@ -45,7 +53,8 @@ class UserController extends Controller
         if (!$user) {
             abort(404);
         }
-    	return view('admin.users.edit', compact('user'));
+        $permission = $user->roles;
+    	return view('admin.users.edit', compact('user','permission'));
     }
 
     public function postUpdate($id, UserRequest $request) {
@@ -66,6 +75,12 @@ class UserController extends Controller
             $filename = date('Y_d_m_H_i_s').'-'. $image->getClientOriginalName();
             Image::make($image)->save(public_path('upload/users/'.$filename));
             $user->avatar = 'upload/users/'.$filename;
+        }
+        $role = Role::where('id',$request['role'])->first();
+        if ($role) {
+            $user->role_id = $role->id;
+        } else {
+            $user->role_id = RoleEnum::USER['id'];
         }
         $user->save();
 
