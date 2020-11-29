@@ -16,11 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('admin/login', 'Admin\LoginController@getLogin')->name('admin.getLogin');
+Route::post('admin/login', 'Admin\LoginController@postLogin')->name('admin.postLogin');
 
+Route::group(['middleware' => ['adminLogin', 'web']], function () {
 Route::group(['prefix' => 'admin'], function() {
 
-    Route::get('/', function () {return view('admin/index');})->name('admin.index');
-
+    Route::get('/','Admin\HomeController@index')->name('admin.index');
+    Route::get('/logout', 'Admin\LoginController@logout')->name('admin.logout');
     Route::group(['prefix' => 'cate_product'], function() {
 
         Route::get('/', 'Admin\CateProductController@index')->name('admin.cate_product.index');
@@ -56,5 +59,5 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('setting', 'Admin\SettingController@index')->name('admin.setting');
 
     Route::post('setting/update', 'Admin\SettingController@update')->name('admin.setting.update');
-
+    });
 });
