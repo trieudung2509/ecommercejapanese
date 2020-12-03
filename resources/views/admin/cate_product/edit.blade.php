@@ -37,7 +37,7 @@
                                     <a href="{{ route('admin.cate_product.index') }}" class="btn btn-secondary waves-effect">Cancel</a>
                                 </div>
                             </div>
-                          
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -62,9 +62,9 @@
                                     <div class="form-group">
                                         <label class="control-label"> Category </label>
                                         <select class="form-control select2" name="parent_id">
-                                            <?php 
+                                            <?php
                                                 $list_category = DB::table('cate_products')
-                                                ->where('id',$cate_product->parent_id)->first(); 
+                                                ->where('id',$cate_product->parent_id)->first();
                                             ?>
                                             @if(isset($list_category))
                                                 <option value="{{ $cate_product->parent_id }}">
@@ -119,7 +119,7 @@
                                             <input id="meta_keyword" name="meta_key" type="text" class="form-control" value="{{ $cate_product->meta_key ?? '' }}">
                                         </div>
                                     </div>
-    
+
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="metadescription">Meta Description</label>
