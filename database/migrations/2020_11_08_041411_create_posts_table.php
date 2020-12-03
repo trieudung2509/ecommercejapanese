@@ -20,6 +20,10 @@ class CreatePostsTable extends Migration
             $table->integer('cate_post_id')->unsigned();
             $table->foreign('cate_post_id')->references('id')->on('cate_posts');
             $table->integer('position')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('description')->nullable();
+            $table->string('content')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('is_home')->default(0);
             $table->string('image')->nullable();

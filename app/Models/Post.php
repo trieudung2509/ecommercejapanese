@@ -8,7 +8,7 @@ class Post extends Model
 {
     protected $guarded = [];
 
-    public function Cate_post()
+    public function cate_post()
     {
 
         return $this->belongsTo('App\Models\Cate_post', 'cate_post_id', 'id');

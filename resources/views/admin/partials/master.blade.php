@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-        
+
         <meta charset="utf-8" />
         <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +10,16 @@
         <meta content="Themesbrand" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="images/favicon.ico">
-        
+
         <!-- select2 css -->
         <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 
         <!-- dropzone css -->
         <link href="{{ asset('css/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
         @yield('stylecss')
+    <!-- Summernote -->
+{{--        <link href="{{ asset('css/summernote-bs4.min.css') }}" rel="stylesheet" type="text/css" />--}}
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
         <!-- Bootstrap Css -->
         <link href="{{ asset('css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
@@ -28,7 +31,7 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
     </head>
 
-    
+
     <body data-sidebar="dark">
 
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
@@ -36,7 +39,7 @@
         <!-- Begin page -->
         <div id="layout-wrapper">
 
-            
+
             @include('admin.partials.header')
             <!-- ========== Left Sidebar Start ========== -->
             @include('admin.partials.sidebar')
@@ -66,7 +69,10 @@
         <script src="{{ asset('js/ecommerce-select2.init.js') }}"></script>
         <!-- Sweet alert init js-->
         <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-        <script src="{{ asset('js/sweet-alerts.init.js') }}"></script>  
+        <script src="{{ asset('js/sweet-alerts.init.js') }}"></script>
+        <!-- Summernote -->
+{{--        <script src="{{ asset('js/summernote-bs4.min.js') }}"></script>--}}
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
         @yield('script')
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>

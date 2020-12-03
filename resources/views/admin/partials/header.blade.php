@@ -3,15 +3,6 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index.html" class="logo logo-dark">
-                    <span class="logo-sm">
-                        <img src="{{ asset('images/logo.svg') }}" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="{{ asset('images/logo-dark.png') }}" alt="" height="17">
-                    </span>
-                </a>
-
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('images/logo-light.svg') }}" alt="" height="22">
@@ -37,7 +28,7 @@
             <div class="dropdown dropdown-mega d-none d-lg-block ml-2">
                 <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                     <span key="t-megamenu">Mega Menu</span>
-                    <i class="mdi mdi-chevron-down"></i> 
+                    <i class="mdi mdi-chevron-down"></i>
                 </button>
                 <div class="dropdown-menu dropdown-megamenu">
                     <div class="row">
@@ -119,7 +110,7 @@
                                         <li>
                                             <a href="javascript:void(0);" key="t-faqs">FAQs</a>
                                         </li>
-                
+
                                     </ul>
                                 </div>
                             </div>
@@ -361,7 +352,7 @@
                     </div>
                     <div class="p-2 border-top">
                         <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
-                            <i class="mdi mdi-arrow-right-circle mr-1"></i> <span key="t-view-more">View More..</span> 
+                            <i class="mdi mdi-arrow-right-circle mr-1"></i> <span key="t-view-more">View More..</span>
                         </a>
                     </div>
                 </div>
