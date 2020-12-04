@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['adminLogin', 'web']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 Route::get('admin/login', 'Admin\LoginController@getLogin')->name('admin.getLogin');
 Route::post('admin/login', 'Admin\LoginController@postLogin')->name('admin.postLogin');
 
@@ -45,16 +50,48 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/list','Admin\UserController@index')->name('admin.users.list');
 
         Route::get('/create','Admin\UserController@create')->name('admin.users.create');
-    
-        Route::post('/create','Admin\UserController@createUser')->name('admin.users.createUser');
+
+        Route::post('/create','Admin\UserController@postCreate')->name('admin.users.createUser');
 
         Route::get('/update/{id}', 'Admin\UserController@update')->name('admin.users.update');
 
         Route::post('/update/{id}', 'Admin\UserController@postUpdate')->name('admin.users.postUpdate');
-    
+
         Route::get('/destroy/{id}', 'Admin\UserController@destroy')->name('admin.users.destroy');
-    
+
         Route::post('/status', 'Admin\UserController@status')->name('admin.users.status');
+    });
+
+    Route::group(['prefix' => 'cate_post'], function() {
+        Route::get('/list','Admin\CatePostController@index')->name('admin.cate_post.list');
+
+        Route::get('/create','Admin\CatePostController@create')->name('admin.cate_post.create');
+
+        Route::post('/create','Admin\CatePostController@postCreate')->name('admin.cate_post.postCreate');
+
+        Route::get('/update/{id}', 'Admin\CatePostController@update')->name('admin.cate_post.update');
+
+        Route::post('/update/{id}', 'Admin\CatePostController@postUpdate')->name('admin.cate_post.postUpdate');
+
+        Route::get('/destroy/{id}', 'Admin\CatePostController@destroy')->name('admin.cate_post.destroy');
+
+        Route::post('/status', 'Admin\CatePostController@status')->name('admin.cate_post.status');
+    });
+
+    Route::group(['prefix' => 'post'], function() {
+        Route::get('/list','Admin\PostController@index')->name('admin.post.list');
+
+        Route::get('/create','Admin\PostController@create')->name('admin.post.create');
+
+        Route::post('/create','Admin\PostController@postCreate')->name('admin.post.postCreate');
+
+        Route::get('/update/{id}', 'Admin\PostController@update')->name('admin.post.update');
+
+        Route::post('/update/{id}', 'Admin\PostController@postUpdate')->name('admin.post.postUpdate');
+
+        Route::get('/destroy/{id}', 'Admin\PostController@destroy')->name('admin.post.destroy');
+
+        Route::post('/status', 'Admin\PostController@status')->name('admin.post.status');
     });
     Route::get('setting', 'Admin\SettingController@index')->name('admin.setting');
 

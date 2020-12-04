@@ -34,26 +34,26 @@
                                 </div>
                                 <div classs="col-sm-3">
                                     <button id="submit-form" type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save Changes</button>
-                                    <a href="{{ route('admin.cate_product.index') }}" class="btn btn-secondary waves-effect">Cancel</a>
+                                    <a href="{{ route('admin.cate_post.list') }}" class="btn btn-secondary waves-effect">Cancel</a>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="productname">Category Name <span class="required-star">*</span></label>
-                                    <input id="productname" name="name" type="text" class="form-control" required value="{{ $cate_product->name ?? '' }}">
+                                        <label for="cate-name">Category Name <span class="required-star">*</span></label>
+                                    <input id="cate-name" name="name" type="text" class="form-control" required value="{{ $cate_post->name ?? '' }}">
                                         @if($errors->has('name'))
                                             <p class="required-star">{{ $errors->first('name') }}</p>
                                         @endif
                                     </div>
                                      <div class="form-group">
                                         <label for="productname">Position</label>
-                                        <input name="position" type="text" class="form-control" value="{{ $cate_product->position ?? '' }}">
+                                        <input name="position" type="text" class="form-control" value="{{ $cate_post->position ?? '' }}">
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-switch mb-3" dir="ltr">
-                                            <input type="checkbox" class="custom-control-input" name="status" id="customSwitch1" {{ $cate_product->status == 1 ? 'checked' : '' }}>
+                                            <input type="checkbox" class="custom-control-input" name="status" id="customSwitch1" checked="">
                                             <label class="custom-control-label" for="customSwitch1">Status</label>
                                         </div>
                                     </div>
@@ -63,11 +63,11 @@
                                         <label class="control-label"> Category </label>
                                         <select class="form-control select2" name="parent_id">
                                             <?php
-                                                $list_category = DB::table('cate_products')
-                                                ->where('id',$cate_product->parent_id)->first();
+                                                $list_category = DB::table('cate_posts')
+                                                ->where('id',$cate_post->parent_id)->first();
                                             ?>
                                             @if(isset($list_category))
-                                                <option value="{{ $cate_product->parent_id }}">
+                                                <option value="{{ $cate_post->parent_id }}">
                                                     {{ $list_category->name }}
                                                 </option>
                                             @endif
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="productdesc"> Description</label>
-                                    <textarea name="description" class="form-control" id="productdesc" rows="5">{{ $cate_product->description }}</textarea>
+                                    <textarea name="description" class="form-control" id="productdesc" rows="5">{{ $cate_post->description }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -95,9 +95,9 @@
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
-                                    @if (isset($cate_product->image))
+                                    @if (isset($cate_post->image))
                                     <div class="form-group">
-                                        <img class="rounded mr-2" alt="200x200" width="200" src="{{ asset($cate_product->image ?? '') }}" data-holder-rendered="true">
+                                        <img class="rounded mr-2" alt="200x200" width="200" src="{{ asset($cate_post->image ?? '') }}" data-holder-rendered="true">
                                     </div>
                                     @endif
                                 </div>
@@ -112,18 +112,18 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="metatitle">Meta title</label>
-                                            <input id="metatitle" name="title_seo" type="text" class="form-control" value="{{ $cate_product->title_seo ?? '' }}">
+                                            <input id="metatitle" name="title_seo" type="text" class="form-control" value="{{ $cate_post->title_seo ?? '' }}">
                                         </div>
                                         <div class="form-group">
                                             <label for="metakeywords">Meta Keyword</label>
-                                            <input id="meta_keyword" name="meta_key" type="text" class="form-control" value="{{ $cate_product->meta_key ?? '' }}">
+                                            <input id="meta_keyword" name="meta_key" type="text" class="form-control" value="{{ $cate_post->meta_key ?? '' }}">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="metadescription">Meta Description</label>
-                                            <textarea class="form-control" name="meta_des" id="meta_description" rows="5">{{ $cate_product->meta_des ?? '' }}</textarea>
+                                            <textarea class="form-control" name="meta_des" id="meta_description" rows="5">{{ $cate_post->meta_des ?? '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>

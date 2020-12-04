@@ -57,6 +57,17 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-pencil"></i>
+                        <span key="t-ecommerce">List Post</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                    <li><a href="{{ route('admin.cate_post.list') }}" key="t-cate-post">Category</a></li>
+                    <li><a href="{{ route('admin.post.list') }}" key="t-post">Post</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-store"></i>
                         <span key="t-ecommerce">List Products</span>
                     </a>
