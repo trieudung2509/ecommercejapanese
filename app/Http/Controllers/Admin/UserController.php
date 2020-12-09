@@ -10,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
+use Illuminate\Support\Facades\Auth;
 use Image,Hash;
 class UserController extends Controller
 {
@@ -101,6 +102,7 @@ class UserController extends Controller
             'status' => true,
         ]);
     }
+
     public function status(Request $request) {
         if (empty($request->select_box)) {
             return back()->with('error','Please choose category');
@@ -130,4 +132,10 @@ class UserController extends Controller
             return back()->with('success','Processed Successfully');
         }
     }
+
+    public function profile(Request $request) {
+        $user = Auth::user();
+        return view('admin.users.profile')->with('user', $user);
+    }
+
 }
