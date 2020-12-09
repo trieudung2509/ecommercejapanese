@@ -26,7 +26,6 @@ Route::post('admin/login', 'Admin\LoginController@postLogin')->name('admin.postL
 
 Route::group(['middleware' => ['adminLogin', 'web']], function () {
 Route::group(['prefix' => 'admin'], function() {
-
     Route::get('/','Admin\HomeController@index')->name('admin.index');
     Route::get('/logout', 'Admin\LoginController@logout')->name('admin.logout');
     Route::group(['prefix' => 'cate_product'], function() {
@@ -60,6 +59,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/destroy/{id}', 'Admin\UserController@destroy')->name('admin.users.destroy');
 
         Route::post('/status', 'Admin\UserController@status')->name('admin.users.status');
+        
+        Route::get('/profile','Admin\UserController@profile')->name('admin.users.profile');
     });
 
     Route::group(['prefix' => 'cate_post'], function() {
