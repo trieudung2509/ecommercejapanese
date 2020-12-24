@@ -32,7 +32,7 @@
                                     <h4 class="card-title">Basic Information</h4>
                                     <p class="card-title-desc">Fill all information below</p>
                                 </div>
-                                <div classs="col-sm-3">
+                                <div class="col-sm-3">
                                     <button id="submit-form" type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save Changes</button>
                                     <a href="{{ route('admin.cate_product.index') }}" class="btn btn-secondary waves-effect">Cancel</a>
                                 </div>

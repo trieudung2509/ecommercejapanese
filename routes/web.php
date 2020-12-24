@@ -94,6 +94,21 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::post('/status', 'Admin\PostController@status')->name('admin.post.status');
     });
+
+    Route::group(['prefix' => 'product'], function() {
+        Route::get('/list','Admin\ProductController@index')->name('admin.product.list');
+
+        Route::get('/create','Admin\ProductController@create')->name('admin.product.create');
+
+        Route::post('/create','Admin\ProductController@postCreate')->name('admin.product.postCreate');
+
+        Route::get('/update/{id}', 'Admin\ProductController@update')->name('admin.product.update');
+
+        Route::post('/update/{id}', 'Admin\ProductController@postUpdate')->name('admin.product.postUpdate');
+
+        Route::get('/destroy/{id}', 'Admin\ProductController@destroy')->name('admin.product.destroy');
+    });
+    
     Route::get('setting', 'Admin\SettingController@index')->name('admin.setting');
 
     Route::post('setting/update', 'Admin\SettingController@update')->name('admin.setting.update');
